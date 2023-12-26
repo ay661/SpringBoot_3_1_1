@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Users</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
+    <style>
+        h1 {
+            width: 100%; /* Ширина слоя */
+            padding: 10px; /* Поля вокруг текста */
+            font-family: "Arial Black";
+            text-align: center;
+            /*background-color: black;*/
+            /*color: white; !* Выбираем цвет заголовка *!*/
+        }
+        h2 {
+            width: 100%; /* Ширина слоя */
+            padding: 10px; /* Поля вокруг текста */
+            font-family: "Arial Black";
+            text-align: center;
+            color: SlateBlue;
+        }
+
+        .add-button {
+            /*width: 100%; !* Ширина слоя *!*/
+            font-family: "Arial";
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            margin: 0 auto;
+            display: block;
+        }
+        TABLE {
+            background: lightgrey; /* Цвет фона таблицы */
+        }
+        TD {
+            background: white; /* Цвет фона ячеек */
+        }
+
+    </style>
+</head>
+<body>
+<h1>CRUD - приложение</h1>
+<h2>Users</h2>
+<br>
+<table class="table table">
+    <thead>
+
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Surname</th>
+        <th scope="col">Age</th>
+        <th scope="col">Email</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${users}">
+        <td><a th:href="@{'/' + ${user.id}}" th:utext="${user.id}">UserId</a></td>
+        <td th:text="${user.name}"/>
+        <td th:text="${user.surname}"/>
+        <td th:text="${user.age}"/>
+        <td th:text="${user.email}"/>
+        <td>
+            <form th:action="@{'edit/' + ${user.id}}">
+                <input type="submit" class="buttonEdit" value="Edit"/>
+
+            </form>
+        </td>
+        <td>
+            <form th:method="DELETE" th:action="@{'delete/' + ${user.id}}">
+                <input type="submit" class="buttonDelete" value="Delete"/>
+            </form>
+        </td>
+    </tr>
+    </tr>
+    </tr>
+    </tbody>
+</table>
+<tr>
+    <br>
+    <br>
+    <button class="add-button" onclick="window.location.href = '/add';">Add new user</button>
+
+</tr>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update User</title>
+</head>
+<style>
+    h1 {
+        width: 100%; /* Ширина слоя */
+        padding: 10px; /* Поля вокруг текста */
+        font-family: "Arial Black";
+        text-align: center;
+        color: SlateBlue;
+    }
+
+    td {
+        font-family: "Arial";
+        background-color: #4CAF50;
+        border: none;
+        padding: 15px 32px;
+    }
+    TABLE {
+        background: lightgrey; /* Цвет фона таблицы */
+    }
+    TD {
+        background: white; /* Цвет фона ячеек */
+    }
+    label {
+        width: 100%;
+        margin: 0 auto;
+        display: block;
+    }
+
+</style>
+<body>
+<h1>Update user</h1>
+<form action="#" th:method="PATCH" th:action="@{/edit}" th:object="${user}">
+    <table>
+        <tr>
+            <td>
+                <label for="userId">Id</label>
+                <br>
+                <input readonly type="number" th:field="*{id}" id="userId" placeholder="UserId">
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <label for="name">Name</label>
+                <br>
+                <input type="text" th:field="*{name}" id="name" required/>
+                <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}">name error</div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="surname">Surname</label>
+                <br>
+                <input type="text" th:field="*{surname}" id="surname" required/>
+                <div th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}">name error</div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="age">Age</label>
+                <br>
+                <input type="number" min="0" max="127" th:field="*{age}" id="age">
+                <div th:if="${#fields.hasErrors('age')}" th:errors="*{age}">age error</div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="surname">Email</label>
+                <br>
+                <input type="text" th:field="*{email}" id="email" required/>
+                <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}">email error</div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" class="buttonEdit" value="Update user"/>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
